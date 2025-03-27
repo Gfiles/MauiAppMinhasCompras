@@ -36,6 +36,13 @@ namespace MauiAppMinhasCompras.Helpers
             return _conn.Table<Produto>().ToListAsync();
         }
 
+        public Task<List<TotalCategora>> GetCategoria()
+        {
+            string sql = "SELECT Categoria, SUM(Preco * Quantidade) AS Total FROM Produto GROUP BY Categoria";
+
+            return _conn.QueryAsync<TotalCategora>(sql);
+        }
+
         public Task<List<Produto>> Search(string q)
         {
             string sql = "SELECT * FROM Produto WHERE Descricao LIKE '%" + q + "%'";
@@ -43,4 +50,6 @@ namespace MauiAppMinhasCompras.Helpers
             
         }
     }
+
+    
 }
