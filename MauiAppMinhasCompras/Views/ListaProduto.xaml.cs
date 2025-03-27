@@ -127,4 +127,16 @@ public partial class ListaProduto : ContentPage
             lst_produtos.IsRefreshing = false;
         }
     }
+
+    private void ToolbarItem_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            Navigation.PushAsync(new Views.Relatorio());
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Error", ex.Message, "Ok");
+        }
+    }
 }
